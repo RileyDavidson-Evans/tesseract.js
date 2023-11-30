@@ -1,5 +1,9 @@
 const { simd } = require('wasm-feature-detect');
 const OEM = require('../../constants/OEM');
+const tcsl = require('tesseract.js-core/tesseract-core-simd-lstm');
+const tcs = require('tesseract.js-core/tesseract-core-simd');
+const tcl = require('tesseract.js-core/tesseract-core-lstm');
+const tc = require('tesseract.js-core/tesseract-core');
 
 let TesseractCore = null;
 /*
@@ -8,20 +12,21 @@ let TesseractCore = null;
  */
 module.exports = async (oem, _, res) => {
   if (TesseractCore === null) {
+    console.log('Here running')
     const statusText = 'loading tesseract core';
 
     const simdSupport = await simd();
     res.progress({ status: statusText, progress: 0 });
     if (simdSupport) {
       if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
-        TesseractCore = require('tesseract.js-core/tesseract-core-simd-lstm');
+        TesseractCore = tcsl;
       } else {
-        TesseractCore = require('tesseract.js-core/tesseract-core-simd');
+        TesseractCore = tsc;
       }
     } else if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
-      TesseractCore = require('tesseract.js-core/tesseract-core-lstm');
+      TesseractCore = tcl;
     } else {
-      TesseractCore = require('tesseract.js-core/tesseract-core');
+      TesseractCore = tc;
     }
     res.progress({ status: statusText, progress: 1 });
   }
