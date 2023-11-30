@@ -21,7 +21,7 @@ module.exports = async (oem, _, res) => {
       if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
         TesseractCore = tcsl;
       } else {
-        TesseractCore = tsc;
+        TesseractCore = tcs;
       }
     } else if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
       TesseractCore = tcl;
