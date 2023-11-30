@@ -11,29 +11,29 @@ let TesseractCore = null;
  * TesseractCore.
  */
 module.exports = async (oem, _, res) => {
-  if (TesseractCore === null) {
-    console.log('Here running chicken')
-    const statusText = 'loading tesseract core';
+  // if (TesseractCore === null) {
+  //   console.log('Here running chicken')
+  //   const statusText = 'loading tesseract core';
 
-    const simdSupport = await simd();
-    res.progress({ status: statusText, progress: 0 });
-    if (simdSupport) {
-      if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
-        console.log('Grabbing tcsl');
-        TesseractCore = tcsl;
-      } else {
-        console.log('Grabbing tcs');
-        TesseractCore = tcs;
-      }
-    } else if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
-      console.log('Grabbing tcl');
-      TesseractCore = tcl;
-    } else {
-      console.log('Grabbing tc');
-      TesseractCore = tc;
-    }
-    console.log('Here completed import of core library')
-    res.progress({ status: statusText, progress: 1 });
-  }
-  return TesseractCore;
+  //   const simdSupport = await simd();
+  //   res.progress({ status: statusText, progress: 0 });
+  //   if (simdSupport) {
+  //     if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
+  //       console.log('Grabbing tcsl');
+  //       TesseractCore = tcsl;
+  //     } else {
+  //       console.log('Grabbing tcs');
+  //       TesseractCore = tcs;
+  //     }
+  //   } else if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
+  //     console.log('Grabbing tcl');
+  //     TesseractCore = tcl;
+  //   } else {
+  //     console.log('Grabbing tc');
+  //     TesseractCore = tc;
+  //   }
+  //   console.log('Here completed import of core library')
+  //   res.progress({ status: statusText, progress: 1 });
+  // }
+  return tc;
 };
