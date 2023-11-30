@@ -28,6 +28,7 @@ module.exports = async (oem, _, res) => {
     } else {
       TesseractCore = tc;
     }
+    console.log('Here completed import of core library')
     res.progress({ status: statusText, progress: 1 });
   }
   return TesseractCore;
