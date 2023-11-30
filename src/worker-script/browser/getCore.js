@@ -3,6 +3,7 @@ const coreVersion = require('../../../package.json').dependencies['tesseract.js-
 
 module.exports = async (lstmOnly, corePath, res) => {
   if (typeof global.TesseractCore === 'undefined') {
+    console.log('In Broswer Module')
     const statusText = 'loading tesseract core';
 
     res.progress({ status: statusText, progress: 0 });
