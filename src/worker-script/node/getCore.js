@@ -19,13 +19,17 @@ module.exports = async (oem, _, res) => {
     res.progress({ status: statusText, progress: 0 });
     if (simdSupport) {
       if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
+        console.log('Grabbing tcsl');
         TesseractCore = tcsl;
       } else {
+        console.log('Grabbing tcs');
         TesseractCore = tcs;
       }
     } else if ([OEM.DEFAULT, OEM.LSTM_ONLY].includes(oem)) {
+      console.log('Grabbing tcl');
       TesseractCore = tcl;
     } else {
+      console.log('Grabbing tc');
       TesseractCore = tc;
     }
     console.log('Here completed import of core library')
