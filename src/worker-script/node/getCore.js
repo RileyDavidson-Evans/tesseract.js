@@ -12,7 +12,7 @@ let TesseractCore = null;
  */
 module.exports = async (oem, _, res) => {
   if (TesseractCore === null) {
-    console.log('Here running')
+    console.log('Here running chicken')
     const statusText = 'loading tesseract core';
 
     const simdSupport = await simd();
